@@ -23,7 +23,7 @@ Or install it yourself as:
 
 Typical usage is as follows:
 
-    strangler = Strangler.new( 1.0 )
+    strangler = Strangler.new( 1.5 )
     ...
     strangler.throttle! do
         ...
@@ -31,15 +31,19 @@ Typical usage is as follows:
         ...
     end
 
-This will ensure (by sleeping the current thread) that a calls to the external API does not occur until at least 1.0 seconds after the previous call completed.
+This ensures (by sleeping the current thread) that a call to the external API does not occur until at least 1.5 seconds after the previous call completed.
 
-Note that the specifications of the rate limits for APIs is ambiguous: does a rate limit of 1 call per second allow a call that takes 2 seconds to complete to overlap with another call after the first second? Throttler takes the most conservative interpretation possible.
+Note that if you are writing a Rails app with multiple processes (e.g. by using Passenger), you will need to somehow ensure that all rate limited API calls are made by the same process. 
+
+The specifications of the rate limits for APIs are often ambiguous: does a rate limit of 1 call per second allow a call that takes 2 seconds to overlap with another call after the first second? Strangler takes the most conservative interpretation possible - calls cannot overlap and and the delay argument given to the Strangler constructor is the minimum time between the start of one block execution and the end of the previous block execution.
 
 ## Design Philosophy
 
-This gem is designed to handle the simple use case of calling an API (possibly from multiple threads) with a rate limit. 
+This gem is designed to handle the simple use case of calling an API (possibly from multiple threads) which has a rate limit. 
 
-If you need a more sophisticated strategy (e.g. to perform useful work rather than sleeping, or to avoid potential thread starvation by the scheduler) then you should probably be using a different gem.
+If you need a more sophisticated strategy (e.g. to perform useful work rather than sleeping, or to avoid potential thread starvation by the thread scheduler) then you should probably be using a different gem.
+
+Sorry about the gem name: the good names were already taken.
 
 ## Development
 
