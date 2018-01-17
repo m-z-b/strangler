@@ -6,11 +6,11 @@ require "strangler"
 Gem::Specification.new do |spec|
   spec.name          = "strangler"
   spec.version       = Strangler::VERSION
-  spec.authors       = ["Michael Bell"]
+  spec.authors       = ["Mike Bell"]
   spec.email         = ["mbell@albionresearch.com"]
 
   spec.summary       = %q{Throttle executions of a block}
-  spec.description   = %q{Throttle executions of a block, e.g. to meet an API limit}
+  spec.description   = %q{Throttle executions of a block, e.g. to meet an API rate limit}
   spec.homepage      = "https://www.github.com/m-z-b/strangler"
   spec.license       = "MIT"
 
