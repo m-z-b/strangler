@@ -1,17 +1,17 @@
 
 lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require "throttler"
+require "strangler"
 
 Gem::Specification.new do |spec|
-  spec.name          = "throttler"
-  spec.version       = Throttler::VERSION
+  spec.name          = "strangler"
+  spec.version       = Strangler::VERSION
   spec.authors       = ["Michael Bell"]
   spec.email         = ["mbell@albionresearch.com"]
 
   spec.summary       = %q{Throttle executions of a block}
   spec.description   = %q{Throttle executionns of a block, e.g. to meet an API limit}
-  spec.homepage      = "https://www.github.com/m-z-b/throttler"
+  spec.homepage      = "https://www.github.com/m-z-b/strangler"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'

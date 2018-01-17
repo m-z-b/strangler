@@ -1,6 +1,6 @@
-# Throttler
+# Strangler
 
-Throttler provides a simple throttling mechanism to ensure that there is a minimum delay between calls to a code block. This can be used to ensure that calls to a remote API do not exceed a specific rate.
+Strangler provides a simple throttling mechanism to ensure that there is a minimum delay between calls to a code block. This can be used to ensure that calls to a remote API do not exceed a specific rate.
 
 
 ## Installation
@@ -8,7 +8,7 @@ Throttler provides a simple throttling mechanism to ensure that there is a minim
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'throttler'
+gem 'strangler'
 ```
 
 And then execute:
@@ -17,15 +17,15 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install throttler
+    $ gem install strangler
 
 ## Usage
 
 Typical usage is as follows:
 
-    throttler = Throttler.new( 1.0 )
+    strangler = Strangler.new( 1.0 )
     ...
-    throttler.throttle! do
+    strangler.throttle! do
         ...
         #make external API call here
         ...
@@ -49,7 +49,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/m-z-b/throttler.
+Bug reports and pull requests are welcome on GitHub at https://github.com/m-z-b/strangler.
 
 ## License
 

@@ -1,24 +1,24 @@
 require "test_helper"
 
-class ThrottlerTest < Minitest::Test
+class StranglerTest < Minitest::Test
 
   CALLS = 5
   THREADS = 3
   MINIMUM_DELAY_SECS = 0.5
 
   SETUP = begin
-    puts "Expected Test Duration: ~#{CALLS * THREADS * MINIMUM_DELAY_SECS} secs"
+    puts "Expected Longest Test Duration: ~#{CALLS * THREADS * MINIMUM_DELAY_SECS} secs"
   end
 
 
   def test_that_it_has_a_version_number
-    refute_nil ::Throttler::VERSION
+    refute_nil ::Strangler::VERSION
   end
 
   # We try and replicate a multi-threaded set of calls
   def test_throttling
 
-    throttler = Throttler.new( MINIMUM_DELAY_SECS )
+    strangler = Strangler.new( MINIMUM_DELAY_SECS )
 
     threads = []
     times = []    # Array of [Start, finish, thread number] for each job processed
@@ -27,7 +27,7 @@ class ThrottlerTest < Minitest::Test
     (1..THREADS).each do |iThread|
       threads << Thread.new {
         (1..CALLS).each do |i|
-          throttler.throttle! do
+          strangler.throttle! do
             start = Time.now
             sleep [ 0, 0.1, 0.3, 1.1].sample
             finish = Time.now

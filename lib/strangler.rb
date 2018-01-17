@@ -1,8 +1,8 @@
 require 'thread'
 
 # Limit calls to an API by sleeping
-class Throttler
-  VERSION = "1.0.0"
+class Strangler
+  VERSION = "1.0.1"
 
 
   # Set the minimum delay between calls
