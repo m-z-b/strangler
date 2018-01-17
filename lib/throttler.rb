@@ -2,7 +2,7 @@ require 'thread'
 
 # Limit calls to an API by sleeping
 class Throttler
-  VERSION = "0.1.0"
+  VERSION = "1.0.0"
 
 
   # Set the minimum delay between calls

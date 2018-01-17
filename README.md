@@ -1,8 +1,7 @@
 # Throttler
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/throttler`. To experiment with that code, run `bin/console` for an interactive prompt.
+Throttler provides a simple throttling mechanism to ensure that there is a minimum delay between calls to a code block. This can be used to ensure that calls to a remote API do not exceed a specific rate.
 
-TODO: Delete this and the text above, and describe your gem
 
 ## Installation
 
@@ -22,7 +21,25 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Typical usage is as follows:
+
+    throttler = Throttler.new( 1.0 )
+    ...
+    throttler.throttle! do
+        ...
+        #make external API call here
+        ...
+    end
+
+This will ensure (by sleeping the current thread) that a calls to the external API does not occur until at least 1.0 seconds after the previous call completed.
+
+Note that the specifications of the rate limits for APIs is ambiguous: does a rate limit of 1 call per second allow a call that takes 2 seconds to complete to overlap with another call after the first second? Throttler takes the most conservative interpretation possible.
+
+## Design Philosophy
+
+This gem is designed to handle the simple use case of calling an API (possibly from multiple threads) with a rate limit. 
+
+If you need a more sophisticated strategy (e.g. to perform useful work rather than sleeping, or to avoid potential thread starvation by the scheduler) then you should probably be using a different gem.
 
 ## Development
 
@@ -32,7 +49,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/throttler.
+Bug reports and pull requests are welcome on GitHub at https://github.com/m-z-b/throttler.
 
 ## License
 
