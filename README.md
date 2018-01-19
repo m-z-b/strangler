@@ -33,6 +33,8 @@ Typical usage is as follows:
 
 This ensures (by sleeping the current thread) that a call to the external API does not occur until at least 1.5 seconds after the previous call completed.
 
+If an exception occurs within the block and is handled outside of it, (e.g. a network timeout) the time when the exception occurred is assumed to be the completion time of the operation. If you need to include the exception handling time, the exception handler must be placed inside the block. 
+
 Note that if you are writing a Rails app with multiple processes (e.g. by using Passenger), you will need to somehow ensure that all rate limited API calls are made by the same process. 
 
 The specifications of the rate limits for APIs are often ambiguous: does a rate limit of 1 call per second allow a call that takes 2 seconds to overlap with another call after the first second? Strangler takes the most conservative interpretation possible - calls cannot overlap and and the delay argument given to the Strangler constructor is the minimum time between the start of one block execution and the end of the previous block execution.
@@ -41,7 +43,7 @@ The specifications of the rate limits for APIs are often ambiguous: does a rate 
 
 This gem is designed to handle the simple use case of calling an API (possibly from multiple threads) which has a rate limit. 
 
-If you need a more sophisticated strategy (e.g. to perform useful work rather than sleeping, or to avoid potential thread starvation by the thread scheduler) then you should probably be using a different gem.
+If you need a more sophisticated strategy (e.g. to perform useful work rather than sleeping, or to avoid potential thread starvation by the thread scheduler)then you should probably be using a different gem.
 
 Sorry about the gem name: the good names were already taken.
 

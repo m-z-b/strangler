@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    throttler (0.1.0)
+    strangler (1.0.5)
 
 GEM
   remote: https://rubygems.org/
@@ -16,7 +16,7 @@ DEPENDENCIES
   bundler (~> 1.16)
   minitest (~> 5.0)
   rake (~> 10.0)
-  throttler!
+  strangler!
 
 BUNDLED WITH
    1.16.1

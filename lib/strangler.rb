@@ -2,7 +2,7 @@ require 'thread'
 
 # Limit calls to an API by sleeping
 class Strangler
-  VERSION = "1.0.4"
+  VERSION = "1.0.5"
 
 
   # Set the minimum delay between calls
@@ -25,8 +25,11 @@ class Strangler
           sleep doze_time
         end
       end
-      yield # Do the stuff
-      @next_call = Time.now + @minimum_delay_secs
+      begin
+        yield # Do the stuff
+      ensure
+        @next_call = Time.now + @minimum_delay_secs
+      end
     end
   end
 end
