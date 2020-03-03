@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    strangler (1.0.5)
+    strangler (1.0.6)
 
 GEM
   remote: https://rubygems.org/
@@ -13,10 +13,10 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bundler (~> 1.16)
+  bundler (~> 2.0)
   minitest (~> 5.0)
   rake (~> 13.0)
   strangler!
 
 BUNDLED WITH
-   1.16.1
+   2.1.2

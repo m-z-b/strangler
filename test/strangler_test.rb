@@ -52,7 +52,7 @@ class StranglerTest < Minitest::Test
                   finish = Time.now
                 end
               end
-            rescue IOError => err
+            rescue IOError
               # We thought this might happen...   
               exceptions_lock.synchronize { exceptions += 1 }    
             ensure

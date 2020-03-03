@@ -2,7 +2,7 @@ require 'thread'
 
 # Limit calls to an API by sleeping
 class Strangler
-  VERSION = "1.0.5"
+  VERSION = "1.0.6"
 
 
   # Set the minimum delay between calls
